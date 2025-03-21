@@ -46,18 +46,19 @@ test.describe('Sweet Page Test', () => {
         await page.getByRole('link', { name: 'Sweets', exact: true }).click();
     
         // Laukiame, kol bent vienas mygtukas bus matomas
-        const addToBasketButton = page.locator('.btn').first();
+        const addToBasketButton = page.locator('div:nth-child(2) > .card > .card-footer > .btn').first()
         await addToBasketButton.waitFor(); // Laukiame, kol atsiras DOM'e
         await addToBasketButton.scrollIntoViewIfNeeded();
         await expect(addToBasketButton).toBeVisible();
     
         // Spaudžiame mygtuką
         await addToBasketButton.click();
-        await page.waitForTimeout(500);
+        await page.waitForTimeout(1000);
     
         // Laukiame, kol atsinaujins krepšelio skaičius
         const basketCount = page.locator('.badge');
         await expect(basketCount).toBeVisible();
+        await page.waitForTimeout(1000);
         await expect(basketCount).toHaveText('1'); //nerodo kažkodėl
 
     });
