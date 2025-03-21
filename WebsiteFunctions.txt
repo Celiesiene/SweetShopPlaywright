@@ -1,0 +1,9 @@
+			Website https://sweetshop.netlify.app/ functionalities:
+
+Product Browsing: consumers can choose from 16 different sweets such as Chocolate Cups, Sherbert Straws, Sherbet Discs, Bon Bons, Jellies, Fruit Salads, Bible Gums, Wham Bars, Whistles, Sherbert Fountains, Swansea Mixture, Chocolate Beans, Nerds, Drumsticks, Bubbly, Dolly Mixture.
+
+The website has an information section "About" which describes the purpose of the website.
+
+User Authentication. The user can log in to their personal account. 
+
+Shopping Cart. The user can add desired items to the shopping cart, review it before payment, remove items one by one or all at once, and choose either delivery or in-store pickup.

@@ -33,13 +33,17 @@ test.describe('Basket Page Test', () => {
 
     test('Verify checkout without details', async ({ page }) => {
         await page.getByRole('link', { name: 'Browse Sweets' }).click();
+        await page.waitForTimeout(500);
         await page.locator('a[data-id="2"]').click();
+        await page.waitForTimeout(500);
         await page.locator('a[data-id="4"]').click();
+        await page.waitForTimeout(500);
         await page.locator('a[data-id="6"]').click();
-        // await expect(page.locator('.badge')).toHaveText('3');
+        await page.waitForTimeout(500);
+        await expect(page.locator('.badge')).toHaveText('3');
         await page.locator('a[href="/basket"]').click();
         await expect(page.locator('.text-muted').filter({ hasText: 'Your Basket' })).toHaveText('Your Basket');
-        // await expect(page.locator('#basketCount')).toHaveText('3');
+        await expect(page.locator('#basketCount')).toHaveText('3');
         await page.locator('.needs-validation > .btn').click();
 
         const errorMessages = [
@@ -63,29 +67,39 @@ test.describe('Basket Page Test', () => {
 
     test('Verify that Standard Shipping works properly', async ({ page }) => {
         await page.getByRole('link', { name: 'Browse Sweets' }).click();
+        await page.waitForTimeout(500);
         await page.locator('a[data-id="2"]').click();
+        await page.waitForTimeout(500);
         await page.locator('a[data-id="4"]').click();
+        await page.waitForTimeout(500);
         await page.locator('a[data-id="6"]').click();
-        // await expect(page.locator('.badge')).toHaveText('3');
+        await page.waitForTimeout(500);
+        await expect(page.locator('.badge')).toHaveText('3');
         await page.locator('a[href="/basket"]').click();
         await expect(page.locator('.text-muted').filter({ hasText: 'Your Basket' })).toHaveText('Your Basket');
-        // await expect(page.locator('#basketCount')).toHaveText('3');
+        await expect(page.locator('#basketCount')).toHaveText('3');
         await page.locator('.order-md-2 > .d-block > :nth-child(2)').click();
         await expect(page.locator('li.list-group-item:has-text("Total (GBP)") strong')).toHaveText('£4,24');
     });
 
     test('Verify that Promo Code is working', async ({ page }) => {
         await page.getByRole('link', { name: 'Browse Sweets' }).click();
+        await page.waitForTimeout(500);
         await page.locator('a[data-id="2"]').click();
+        await page.waitForTimeout(500);
         await page.locator('a[data-id="4"]').click();
+        await page.waitForTimeout(500);
         await page.locator('a[data-id="6"]').click();
-        // await expect(page.locator('.badge')).toHaveText('3');
+        await page.waitForTimeout(500);
+        await expect(page.locator('.badge')).toHaveText('3');
         await page.locator('a[href="/basket"]').click();
         await expect(page.locator('.text-muted').filter({ hasText: 'Your Basket' })).toHaveText('Your Basket');
-        // await expect(page.locator('#basketCount')).toHaveText('3');
+        await expect(page.locator('#basketCount')).toHaveText('3');
         await page.locator('.input-group input').fill('promo123');
         await page.locator('.btn:has-text("Redeem")').click();
-        await expect(page.locator('.invalid-feedback:has-text("Please input a valid promo code.")')).toBeVisible();
+        await expect(
+            page.locator('.invalid-feedback', { hasText: 'Please input a valid promo code.' })
+          ).toBeVisible();
     });
 
 
@@ -93,15 +107,20 @@ test.describe('Basket Page Test', () => {
     test('Verify empty cart button works', async ({ page }) => {
         // Add products to the cart
         await page.getByRole('link', { name: 'Browse Sweets' }).click();
+        await page.waitForTimeout(500);
         await page.locator('div:nth-child(2) > .card > .card-footer > .btn').first().click();
+        await page.waitForTimeout(500);
         await page.locator('div:nth-child(4) > .card > .card-footer > .btn').first().click();
+        await page.waitForTimeout(500);
         await page.locator('div:nth-child(3) > .card > .card-footer > .btn').first().click();
+        await page.waitForTimeout(500);
         
         // Click the "Basket" link to navigate to the basket page
         await page.locator('a[href="/basket"]').click();
         
         // Verify "Your Basket" text is present and visible
         await expect(page.locator('.text-muted').filter({ hasText: 'Your Basket' })).toHaveText('Your Basket');
+        await expect(page.locator('#basketCount')).toHaveText('3');
         
         // Set up dialog handler for the confirmation prompt
         page.once('dialog', dialog => {

@@ -53,7 +53,7 @@ test.describe('Sweet Page Test', () => {
     
         // Spaudžiame mygtuką
         await addToBasketButton.click();
-        await page.waitForTimeout(2000);
+        await page.waitForTimeout(500);
     
         // Laukiame, kol atsinaujins krepšelio skaičius
         const basketCount = page.locator('.badge');
